@@ -112,12 +112,12 @@ class ArticleController extends Controller
 
             // requered values
             if(empty($title) || empty($idAuthor))
-                return new View("NULL VALUES ARE NOT ALLOWED FOR TITLE AND AUTHOR", Response::HTTP_NOT_ACCEPTABLE);
+            { return new View("NULL VALUES ARE NOT ALLOWED FOR TITLE AND AUTHOR", Response::HTTP_NOT_ACCEPTABLE); }
 
             $author = $this->authorRep->find($idAuthor);
 
             if(!$author)
-                return new View("Author not found", Response::HTTP_NOT_FOUND);
+            { return new View("Author not found", Response::HTTP_NOT_FOUND); }
 
             $article =  new Article();
             $article->setTitle($title);
@@ -148,19 +148,19 @@ class ArticleController extends Controller
             $article = $this->articleRep->findOneById($id);
 
             if (!$article)
-                return new View("Article not found", Response::HTTP_NOT_FOUND);
+            { return new View("Article not found", Response::HTTP_NOT_FOUND); }
 
             if(!empty($data['title']))
-                $article->setTitle($data['title']);
+            { $article->setTitle($data['title']); }
 
             if(isset($data['content']))
-                $article->setContent($data['content']);
+            { $article->setContent($data['content']); }
 
             if(!empty($data['auteur'])) {
                 $author = $this->authorRep->find($data['auteur']);
 
                 if(!$author)
-                    return new View("Author not found", Response::HTTP_NOT_FOUND);
+                { return new View("Author not found", Response::HTTP_NOT_FOUND); }
 
                 $article->setAuthor($author);
             }
@@ -182,8 +182,9 @@ class ArticleController extends Controller
     {
         $article = $this->articleRep->findOneById($id);
 
-        if (!$article)
+        if (!$article) {
             return new View("Article not found", Response::HTTP_NOT_FOUND);
+        }
 
         $this->articleRep->removeArticle($article);
 
