@@ -165,7 +165,7 @@ class ArticleController extends Controller
                 $article->setAuthor($author);
             }
 
-            $this->articleRep->updateArticle($article);
+            $this->articleRep->saveArticle($article);
         }
         catch (\Exception $e) {
             return  $e->getMessage()."\n".$e->getTraceAsString();

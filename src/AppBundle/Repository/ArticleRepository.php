@@ -95,15 +95,6 @@ class ArticleRepository
     /**
      * @param Article $article
      */
-    public function updateArticle(Article $article)
-    {
-        $this->_em->persist($article);
-        $this->_em->flush();
-    }
-
-    /**
-     * @param Article $article
-     */
     public function removeArticle(Article $article)
     {
         $this->_em->remove($article);
